@@ -1,0 +1,11 @@
+Pasos:
+(https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=34755, http://www.penguintutor.com/linux/printing-cups)
+    1.- Lo primero es instalar el sistema CUPS
+        sudo apt install cups
+    2.- CUPS utiliza el grupo lpadmin para determinar quién está autorizado para administrar las impresoras. Por lo 
+        tanto, deberá agregar el grupo lpadmin a su usuario para permitirle administrar las impresoras. Esto se puede 
+        hacer emitiendo: sudo usermod -a -G lpadmin (usuario)
+        sudo usermod -a -G lpadmin pi
+    3.- El resto de la administración de las impresoras se puede hacer a través de una interfaz web. Conéctese a través
+        del navegador web en la computadora local a http://127.0.0.1:63
+    4.- 
