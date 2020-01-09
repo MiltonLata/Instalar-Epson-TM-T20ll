@@ -1,11 +1,34 @@
+Agregar impresora TM T20II
+
 Pasos:
-(https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=34755, http://www.penguintutor.com/linux/printing-cups)
-    1.- Lo primero es instalar el sistema CUPS
-        sudo apt install cups
-    2.- CUPS utiliza el grupo lpadmin para determinar quién está autorizado para administrar las impresoras. Por lo 
-        tanto, deberá agregar el grupo lpadmin a su usuario para permitirle administrar las impresoras. Esto se puede 
-        hacer emitiendo: sudo usermod -a -G lpadmin (usuario)
-        sudo usermod -a -G lpadmin pi
-    3.- El resto de la administración de las impresoras se puede hacer a través de una interfaz web. Conéctese a través
-        del navegador web en la computadora local a http://127.0.0.1:63
-    4.- 
+	sudo mkdir 777 /install
+	cd /install
+	sudo wget -O /install/master.zip 'https://github.com/plinth666/epsonsimplecups/archive/master.zip'
+	sudo unzip master.zip
+	cd epsonsimplecups-master
+	sudo apt-get install libcups2-dev
+	sudo apt-get install libcupsimage2-dev
+	sudo apt-get install cups cups-client
+	
+	para modificar el archivo rasterosimple.c "https://github.com/plinth666/epsonsimplecups/tree/master/src"
+	sudo pcmanfm
+	entramos en la carpeta "src"
+	y abrimos el archivo rasterosimple.c
+	editamos la linea 'inline' desde el inicio de la línea 299 y pude ejecutar make sin problemas
+		Cambiar    inline void initializeSettings  a   void initializeSettings
+
+	sudo make
+	sudo make install
+
+	Damos los permisos para poder acceder a nuestra impresora TM T20II (https://www.ediciones-eni.com/open/mediabook.aspx?idR=e77326bec87b87d94614e5ff0c0757a2)
+	sudo usermod -a -G lpadmin pi
+	En nuestro navegador ingresamos a la siguiente pagina:
+	http://localhost:631/
+	
+	Adicion de la impresora Epson TM T20II
+	Vamos a Administracion/Anadir impresoras y clases/anadir impresora
+	ingresamos el ususario y la contrasena (usr:pi    Contrasena: balanza)
+	Seleccionamos la impresor Epson TM T20II
+	En ubicacion ponemos: Local
+	En modelo seleccionamos Epson TM-T20II
+	En media size: 80mm*90mm
